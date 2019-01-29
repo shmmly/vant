@@ -42,10 +42,10 @@ export default sfc({
       type: Boolean,
       default: true
     },
-    currency: {
-      type: String,
-      default: '¥'
-    }
+    // currency: {
+    //   type: String,
+    //   default: '¥'
+    // }
   },
 
   data() {
@@ -166,7 +166,7 @@ export default sfc({
               ref="card"
               key={coupon.id}
               coupon={coupon}
-              currency={this.currency}
+              // currency={this.currency}
               chosen={index === this.chosenCoupon}
               nativeOnClick={onChange(index)}
             />
@@ -180,7 +180,7 @@ export default sfc({
       <Tab title={this.disabledTitle}>
         <div class={bem('list')} style={this.listStyle}>
           {this.disabledCoupons.map(coupon => (
-            <Coupon disabled key={coupon.id} coupon={coupon} currency={this.currency} />
+            <Coupon disabled key={coupon.id} coupon={coupon}  />
           ))}
           {!this.disabledCoupons.length && Empty}
         </div>

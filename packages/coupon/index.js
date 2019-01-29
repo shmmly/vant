@@ -20,15 +20,29 @@ function formatAmount(amount) {
   return (amount / 100).toFixed(amount % 100 === 0 ? 0 : amount % 10 === 0 ? 1 : 2);
 }
 
+function formatcurrency(currency) {
+  let value = '';
+  if (currency === 0) {
+    value = '￥';
+  } else if (currency === 1) {
+    value = '小时';
+  } else if (currency === 2) {
+    value = '分钟';
+  } else if (currency === 3) {
+    value = '天';
+  }
+  return value;
+}
+
 export default sfc({
   props: {
     coupon: Object,
     chosen: Boolean,
-    disabled: Boolean,
-    currency: {
-      type: String,
-      default: '¥'
-    }
+    disabled: Boolean
+    // currency: {
+    //   type: String,
+    //   default: '¥'
+    // }
   },
 
   computed: {
@@ -38,7 +52,7 @@ export default sfc({
 
     faceAmount() {
       return this.coupon.denominations
-        ? `<span>${this.currency}</span> ${formatAmount(this.coupon.denominations)}`
+        ? `<span>${formatcurrency(this.coupon.currency)}</span> ${formatAmount(this.coupon.denominations)}`
         : this.coupon.discount
           ? t('discount', formatDiscount(this.coupon.discount))
           : '';
@@ -59,13 +73,13 @@ export default sfc({
       <div class={bem({ disabled })}>
         <div class={bem('content')}>
           <div class={bem('head')}>
-            <h2 domPropsInnerHTML={this.faceAmount} />
+            <h2 domPropsInnerHTML={this.faceAmount}/>
             <p>{this.coupon.condition || this.conditionMessage}</p>
           </div>
           <div class={bem('body')}>
             <h2>{coupon.name}</h2>
             <p>{this.validPeriod}</p>
-            {this.chosen && <Checkbox value={true} class={bem('corner')} />}
+            {this.chosen && <Checkbox value={true} class={bem('corner')}/>}
           </div>
         </div>
         {description && <p class={bem('description')}>{description}</p>}
