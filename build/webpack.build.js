@@ -12,7 +12,7 @@ module.exports = Object.assign(config, {
   },
   output: {
     path: path.join(__dirname, '../lib'),
-    library: 'vant',
+    library: 'mvant',
     libraryTarget: 'umd',
     filename: isMinify ? '[name].min.js' : '[name].js',
     umdNamedDefine: true,

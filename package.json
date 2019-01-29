@@ -32,10 +32,9 @@
     "release": "sh build/release.sh"
   },
 
-
   "repository": {
     "type": "git",
-    "url": "git@github.com:youzan/vant.git"
+    "url": "git@github.com:shmmly/vant.git"
   },
   "keywords": [
     "youzan",
